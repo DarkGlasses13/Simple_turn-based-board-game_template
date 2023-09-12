@@ -1,11 +1,18 @@
 {
   "dependencies": {
+    "com.darkglasses.fsm": {
+      "version": "https://github.com/DarkGlasses13/FSM.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "dad17d0f07ddfe7e9bd0d6aa9c9c9da98d81bb18"
+    },
     "com.darkglasses.tickable-controllers_based_architecture": {
       "version": "https://github.com/DarkGlasses13/Tickable-controllers_architecture.git",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "930eeb0c153bb3fba22ec1a1627fed1b946b3782"
+      "hash": "56ab1c992f3bf207a65420b5effb9ce4b9b84e6f"
     },
     "com.unity.addressables": {
       "version": "1.21.17",

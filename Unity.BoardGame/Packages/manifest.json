@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.darkglasses.fsm": "https://github.com/DarkGlasses13/FSM.git",
     "com.darkglasses.tickable-controllers_based_architecture": "https://github.com/DarkGlasses13/Tickable-controllers_architecture.git",
     "com.unity.addressables": "1.21.17",
     "com.unity.cinemachine": "2.9.7",

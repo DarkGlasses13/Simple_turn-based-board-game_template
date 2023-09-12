@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.darkglasses.tickable-controllers_based_architecture": "https://github.com/DarkGlasses13/Tickable-controllers_architecture.git",
     "com.unity.cinemachine": "2.9.7",
     "com.unity.feature.development": "1.0.1",
     "com.unity.inputsystem": "1.6.3",

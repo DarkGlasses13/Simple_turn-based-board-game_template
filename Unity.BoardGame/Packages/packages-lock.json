@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.darkglasses.tickable-controllers_based_architecture": {
+      "version": "https://github.com/DarkGlasses13/Tickable-controllers_architecture.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "8331ce7570f882a11c3770f821f061c957a9f062"
+    },
     "com.unity.burst": {
       "version": "1.8.8",
       "depth": 1,

@@ -5,7 +5,7 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "dad17d0f07ddfe7e9bd0d6aa9c9c9da98d81bb18"
+      "hash": "7c9f6f5c1aa2f14275ef92dcff0ad4ad944fd6be"
     },
     "com.darkglasses.tickable-controllers_based_architecture": {
       "version": "https://github.com/DarkGlasses13/Tickable-controllers_architecture.git",

@@ -6,7 +6,7 @@ using Zenject;
 
 namespace Assets._Project
 {
-    public class ProjectRunner : Runner, ITickable, ILateTickable, IFixedTickable
+    public class ProjectRunner : Runner, IInitializable, ITickable, ILateTickable, IFixedTickable
     {
         private readonly ISceneSwitcher _sceneSwitcher;
 
@@ -14,6 +14,8 @@ namespace Assets._Project
         {
             _sceneSwitcher = sceneSwitcher;
         }
+
+        public void Initialize() => RunAsync();
 
         protected override Task CreateControllers()
         {

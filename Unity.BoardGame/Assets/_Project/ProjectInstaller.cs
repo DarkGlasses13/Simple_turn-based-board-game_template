@@ -20,7 +20,8 @@ namespace Assets._Project
             Container
                 .BindInterfacesAndSelfTo<ProjectRunner>()
                 .FromNew()
-                .AsSingle();
+                .AsSingle()
+                .NonLazy();
         }
 
         private void BindControllers()

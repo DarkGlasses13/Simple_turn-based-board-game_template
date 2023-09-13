@@ -2,7 +2,7 @@
 using System;
 using UnityEngine;
 
-namespace Assets._Project.Game_Flow.States
+namespace Assets._Project.Gameplay_States
 {
     public class GetTurnOrderState : State
     {

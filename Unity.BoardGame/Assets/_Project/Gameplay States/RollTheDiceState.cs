@@ -1,7 +1,7 @@
 ﻿using Finite_State_Machine;
 using UnityEngine;
 
-namespace Assets._Project.Game_Flow.States
+namespace Assets._Project.Gameplay_States
 {
     public class RollTheDiceState : State
     {

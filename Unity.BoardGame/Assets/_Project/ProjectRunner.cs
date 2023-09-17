@@ -15,7 +15,11 @@ namespace Assets._Project
             _sceneSwitcher = sceneSwitcher;
         }
 
-        public void Initialize() => RunAsync();
+        public void Initialize()
+        {
+            Application.targetFrameRate = 60;
+            RunAsync();
+        }
 
         protected override Task CreateControllers()
         {
@@ -27,9 +31,8 @@ namespace Assets._Project
             return Task.CompletedTask;
         }
 
-        protected override void OnControllersInitializedAndEnabled()
+        protected override void OnControllersInitialized()
         {
-            Application.targetFrameRate = 60;
             _sceneSwitcher.ChangeAsync("Demo Game");
         }
     }

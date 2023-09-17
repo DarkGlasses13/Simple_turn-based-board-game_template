@@ -1,25 +1,64 @@
-﻿using Assets._Project.Gameplay_States;
+﻿using Assets._Project.Character_Selection;
+using Assets._Project.Characters;
+using Assets._Project.Dice_Rolling;
+using Assets._Project.Turn_Sequencing;
 using Finite_State_Machine;
 using UnityEngine;
 using Zenject;
 
 namespace Assets._Project
 {
-    [CreateAssetMenu]
-    public class GameInstaller : ScriptableObjectInstaller 
+    public class GameInstaller : MonoInstaller 
     {
+        [SerializeField] private Transform
+            _hudContainer,
+            _popupsContainer;
+
         public override void InstallBindings()
         {
-            BindRunner();
+            BindConfig();
+            BindContainers();
+            BindCharactersBase();
             BindStateMachine();
             BindStates();
+            BindUIElements();
+            BindTurn();
             BindControllers();
+            BindRunner();
+        }
+
+        private void BindConfig()
+        {
+            Container
+                .Bind<GameConfigLoader>()
+                .FromNew()
+                .AsSingle();
+        }
+
+        private void BindTurn()
+        {
+            Container
+                .Bind<Turn>()
+                .FromNew()
+                .AsSingle();
+        }
+
+        private void BindUIElements()
+        {
+            Container
+                .Bind<CharacterSelectionPopupLoader>()
+                .FromNew()
+                .AsSingle();
         }
 
         private void BindControllers()
         {
             Container
                 .Bind<StateUpdateController>()
+                .AsSingle();
+
+            Container
+                .Bind<CharacterSelectionController>()
                 .AsSingle();
         }
 
@@ -33,7 +72,7 @@ namespace Assets._Project
 
             Container
                 .Bind<IState>()
-                .To<GetTurnOrderState>()
+                .To<StartGameState>()
                 .FromNew()
                 .AsSingle();
 
@@ -66,6 +105,27 @@ namespace Assets._Project
                 .FromNew()
                 .AsSingle()
                 .NonLazy();
+        }
+
+        private void BindCharactersBase()
+        {
+            Container
+                .Bind<CharactersBase>()
+                .FromNew()
+                .AsSingle();
+        }
+
+        private void BindContainers()
+        {
+            Container
+                .Bind<Transform>()
+                .WithId("HUD")
+                .FromInstance(_hudContainer);
+
+            Container
+                .Bind<Transform>()
+                .WithId("Popup")
+                .FromInstance(_popupsContainer);
         }
     }
 }

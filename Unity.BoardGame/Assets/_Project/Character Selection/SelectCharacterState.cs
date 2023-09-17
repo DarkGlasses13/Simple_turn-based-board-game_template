@@ -5,10 +5,10 @@ namespace Assets._Project.Character_Selection
 {
     public class SelectCharacterState : State
     {
-        private readonly Turn _turn;
+        private readonly TurnSequence _turn;
         private readonly CharacterSelectionController _characterSelectionController;
 
-        public SelectCharacterState(IStateSwitcher switcher, Turn turn,
+        public SelectCharacterState(IStateSwitcher switcher, TurnSequence turn,
             CharacterSelectionController characterSelectionController) : base(switcher)
         {
             _turn = turn;
@@ -25,7 +25,7 @@ namespace Assets._Project.Character_Selection
         public override void Exit()
         {
             _characterSelectionController?.Disable();
-            _turn.Complete();
+            _turn.CompleteRegistration();
         }
     }
 }

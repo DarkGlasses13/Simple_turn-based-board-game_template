@@ -5,9 +5,9 @@ namespace Assets._Project.Turn_Sequencing
 {
     public class StartGameState : State
     {
-        private readonly Turn _turn;
+        private readonly TurnSequence _turn;
 
-        public StartGameState(IStateSwitcher switcher, Turn turn) : base(switcher)
+        public StartGameState(IStateSwitcher switcher, TurnSequence turn) : base(switcher)
         {
             _turn = turn;
         }

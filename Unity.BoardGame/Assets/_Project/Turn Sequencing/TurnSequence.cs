@@ -2,7 +2,7 @@
 
 namespace Assets._Project.Turn_Sequencing
 {
-    public class Turn
+    public class TurnSequence
     {
         private readonly GameConfig _config;
 
@@ -12,8 +12,9 @@ namespace Assets._Project.Turn_Sequencing
         public int PlayersCount => _players.Count;
         public bool CanRegistNewPlayers => _players.Count < _config.PlayersLimit;
         public Player CurrentPlayer => _players[_currentPlayerIndex];
+        public IReadOnlyCollection<Player> Players => _players.AsReadOnly();
 
-        public Turn(GameConfigLoader configLoader)
+        public TurnSequence(GameConfigLoader configLoader)
         {
             _config = configLoader.Load();
         }
@@ -22,7 +23,7 @@ namespace Assets._Project.Turn_Sequencing
         {
             if (_currentPlayerIndex >= _config.PlayersLimit)
             {
-                Complete();
+                CompleteRegistration();
                 return false;
             }
 
@@ -31,7 +32,7 @@ namespace Assets._Project.Turn_Sequencing
             return true;
         }
 
-        public void Complete()
+        public void CompleteRegistration()
         {
             _currentPlayerIndex = 0;
         }
@@ -46,7 +47,7 @@ namespace Assets._Project.Turn_Sequencing
         public void ForgetPlayers()
         {
             _players.Clear();
-            Complete();
+            CompleteRegistration();
         }
     }
 }

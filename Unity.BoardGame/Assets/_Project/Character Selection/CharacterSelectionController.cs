@@ -14,13 +14,13 @@ namespace Assets._Project.Character_Selection
         private readonly Transform _hudContainer;
         private readonly CharacterSelectionPopupLoader _popupLoader;
         private readonly CharactersBase _charactersBase;
-        private readonly Turn _turn;
+        private readonly TurnSequence _turn;
         private readonly IStateSwitcher _stateSwitcher;
         private CharacterSelectionPopup _popup;
 
         public CharacterSelectionController([Inject(Id = "Popup")]Transform hudContainer,
             CharacterSelectionPopupLoader popupLoader, CharactersBase charactersBase,
-            Turn turn, IStateSwitcher stateSwitcher)
+            TurnSequence turn, IStateSwitcher stateSwitcher)
         {
             _hudContainer = hudContainer;
             _popupLoader = popupLoader;

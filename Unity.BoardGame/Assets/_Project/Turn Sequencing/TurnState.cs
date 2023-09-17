@@ -5,13 +5,16 @@ namespace Assets._Project.Turn_Sequencing
 {
     public class TurnState : State
     {
-        public TurnState(IStateSwitcher switcher) : base(switcher)
+        private readonly TurnSequence _turn;
+
+        public TurnState(IStateSwitcher switcher, TurnSequence turn) : base(switcher)
         {
+            _turn = turn;
         }
 
         public override void Enter()
         {
-            Debug.Log("Performe steps");
+            Debug.Log(_turn.CurrentPlayer.Name + "'s turn");
         }
 
         public override void Exit()

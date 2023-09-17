@@ -38,7 +38,7 @@ namespace Assets._Project
         private void BindTurn()
         {
             Container
-                .Bind<Turn>()
+                .Bind<TurnSequence>()
                 .FromNew()
                 .AsSingle();
         }

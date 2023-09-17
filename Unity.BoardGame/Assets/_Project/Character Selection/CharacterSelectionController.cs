@@ -37,9 +37,9 @@ namespace Assets._Project.Character_Selection
 
         protected override void OnEnable()
         {
-            _popup.Show();
             UpdateButtonsStates();
-            _popup.OnNextPlayer += OnNextPlayer;
+            _popup.Show();
+            _popup.OnSelect += OnNextPlayer;
             _popup.OnPlay += OnPlay;
         }
 
@@ -60,13 +60,13 @@ namespace Assets._Project.Character_Selection
 
         private void UpdateButtonsStates()
         {
-            _popup.NextPlayerButtonInteractable = _turn.CanRegistNewPlayers;
+            _popup.SelectButtonInteractable = _turn.CanRegistNewPlayers;
             _popup.PlayButtonInteractable = _turn.PlayersCount > 1;
         }
 
         protected override void OnDisable()
         {
-            _popup.OnNextPlayer -= OnNextPlayer;
+            _popup.OnSelect -= OnNextPlayer;
             _popup.OnPlay -= OnPlay;
             _popup.Hide();
         }

@@ -15,8 +15,7 @@ namespace Assets._Project.Turn_Sequencing
         public override void Enter()
         {
             Debug.Log("Start game");
-            Debug.Log(_turn.CurrentPlayer.Name);
-            Debug.Log(_turn.CurrentPlayer.CharacterID);
+            _switcher.Switch<TurnState>();
         }
 
         public override void Exit()

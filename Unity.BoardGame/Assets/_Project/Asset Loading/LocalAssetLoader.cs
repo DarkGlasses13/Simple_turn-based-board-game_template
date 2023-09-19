@@ -8,7 +8,7 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace Assets._Project.Asset_Loading
 {
-    public abstract class LocalAssetLoader<T> : AssetLoader<T>
+    public abstract class LocalAssetLoader<T> : AssetLoader<T> where T : class
     {
         public override T Load()
         {

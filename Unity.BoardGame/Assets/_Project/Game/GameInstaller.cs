@@ -1,8 +1,11 @@
-﻿using Assets._Project.Game.Character_Selection;
+﻿using Assets._Project.Game.Board;
+using Assets._Project.Game.Character_Selection;
 using Assets._Project.Game.Characters;
 using Assets._Project.Game.Dice_Rolling;
-using Assets._Project.Game.Turn_Sequencing;
+using Assets._Project.Game.Turn;
 using Finite_State_Machine;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Zenject;
 
@@ -13,7 +16,8 @@ namespace Assets._Project.Game
         [SerializeField]
         private Transform
             _hudContainer,
-            _popupsContainer;
+            _popupsContainer,
+            _way;
 
         public override void InstallBindings()
         {
@@ -21,12 +25,25 @@ namespace Assets._Project.Game
             BindCharactersBase();
             BindStates();
             BindUIElements();
-            BindTurn();
+            BindTurnSequence();
+            BindWay();
             BindControllers();
             BindRunner();
         }
 
-        private void BindTurn()
+        private void BindWay()
+        {
+            Container
+                .Bind<List<Waypoint>>()
+                .FromInstance(_way.GetComponentsInChildren<Waypoint>().ToList());
+
+            Container
+                .Bind<Way>()
+                .FromNew()
+                .AsSingle();
+        }
+
+        private void BindTurnSequence()
         {
             Container
                 .Bind<TurnSequence>()
@@ -40,12 +57,23 @@ namespace Assets._Project.Game
                 .Bind<CharacterSelectionPopupLoader>()
                 .FromNew()
                 .AsSingle();
+
+            Container
+                .Bind<DicePopupLoader>()
+                .FromNew()
+                .AsSingle();
         }
 
         private void BindControllers()
         {
             Container
                 .Bind<CharacterSelectionController>()
+                .FromNew()
+                .AsSingle();
+
+            Container
+                .Bind<DiceController>()
+                .FromNew()
                 .AsSingle();
         }
 
@@ -65,13 +93,13 @@ namespace Assets._Project.Game
 
             Container
                 .Bind<IState>()
-                .To<RollTheDiceState>()
+                .To<TurnState>()
                 .FromNew()
                 .AsSingle();
 
             Container
                 .Bind<IState>()
-                .To<TurnState>()
+                .To<FinishGameState>()
                 .FromNew()
                 .AsSingle();
         }

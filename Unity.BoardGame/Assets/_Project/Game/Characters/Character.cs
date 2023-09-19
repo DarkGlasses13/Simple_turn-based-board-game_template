@@ -15,5 +15,10 @@ namespace Assets._Project.Game.Characters
                 .AddComponent<CharacterInstance>()
                 .Construct(Data.ID);
         }
+
+        public void Move(Transform destination)
+        {
+            GetInstance(Data.ID).transform.SetParent(destination);
+        }
     }
 }

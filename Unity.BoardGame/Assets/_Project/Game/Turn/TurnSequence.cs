@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 
-namespace Assets._Project.Turn_Sequencing
+namespace Assets._Project.Game.Turn
 {
     public class TurnSequence
     {
-        private readonly GameConfig _config;
+        private readonly Config _config;
 
         private readonly List<Player> _players = new();
         private int _currentPlayerIndex;
@@ -21,6 +21,9 @@ namespace Assets._Project.Turn_Sequencing
 
         public bool TryRegistNewPlayer(string name, string characterID)
         {
+            if (string.IsNullOrEmpty(name))
+                return false;
+
             if (_currentPlayerIndex >= _config.PlayersLimit)
             {
                 CompleteRegistration();
@@ -39,7 +42,7 @@ namespace Assets._Project.Turn_Sequencing
 
         public void Next()
         {
-            _currentPlayerIndex = _currentPlayerIndex >= _players.Count 
+            _currentPlayerIndex = _currentPlayerIndex >= _players.Count - 1
                 ? 0
                 : _currentPlayerIndex + 1;
         }

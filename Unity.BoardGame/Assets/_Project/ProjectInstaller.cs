@@ -11,11 +11,21 @@ namespace Assets._Project
     {
         public override void InstallBindings()
         {
+            BindFastRandom();
             BindStateMachine();
             BindSceneSwitcher();
             BindConfig();
             BindControllers();
             BindRunner();
+        }
+
+        private void BindFastRandom()
+        {
+            Container
+                .Bind<FastRandom>()
+                .FromNew()
+                .AsSingle()
+                .NonLazy();
         }
 
         private void BindConfig()

@@ -1,13 +1,13 @@
 ﻿using Architecture_Base.Core;
-using Assets._Project.Characters;
-using Assets._Project.Turn_Sequencing;
+using Assets._Project.Game.Characters;
+using Assets._Project.Game.Turn_Sequencing;
 using Finite_State_Machine;
 using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 using Zenject;
 
-namespace Assets._Project.Character_Selection
+namespace Assets._Project.Game.Character_Selection
 {
     public class CharacterSelectionController : Controller
     {
@@ -18,7 +18,7 @@ namespace Assets._Project.Character_Selection
         private readonly IStateSwitcher _stateSwitcher;
         private CharacterSelectionPopup _popup;
 
-        public CharacterSelectionController([Inject(Id = "Popup")]Transform hudContainer,
+        public CharacterSelectionController([Inject(Id = "Popup")] Transform hudContainer,
             CharacterSelectionPopupLoader popupLoader, CharactersBase charactersBase,
             TurnSequence turn, IStateSwitcher stateSwitcher)
         {

@@ -1,5 +1,5 @@
-﻿using Architecture_Base.UI;
-using Assets._Project.Characters;
+﻿using Assets._Project.Game.Characters;
+using Assets._Project.UI_Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +9,9 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.UI;
 
-namespace Assets._Project.Character_Selection
+namespace Assets._Project.Game.Character_Selection
 {
-    public class CharacterSelectionPopup : MonoBehaviour, IUIElement
+    public class CharacterSelectionPopup : MonoBehaviour
     {
         public event Action<int, string> OnSelect;
         public event Action<int, string> OnPlay;
@@ -20,7 +20,7 @@ namespace Assets._Project.Character_Selection
         [SerializeField] private Transform _content;
         [SerializeField] private Button _selectButton, _playButton;
         [SerializeField] private TMP_InputField _nameField;
-        private List<CharacterSelectToggle> _selectToggles = new();
+        private List<SelectToggle> _selectToggles = new();
         private int _selectedCharacter;
 
         public bool SelectButtonInteractable
@@ -30,7 +30,7 @@ namespace Assets._Project.Character_Selection
             set => _selectButton.interactable = value;
         }
 
-        public bool PlayButtonInteractable 
+        public bool PlayButtonInteractable
         {
             get => _playButton.interactable;
 
@@ -42,8 +42,8 @@ namespace Assets._Project.Character_Selection
             foreach (CharacterData data in datas)
             {
                 GameObject instance = await Addressables.InstantiateAsync("Character Select Toggle", _content).Task;
-                CharacterSelectToggle toggle = instance.GetComponent<CharacterSelectToggle>();
-                toggle.Construct(_toggleGroup, data);
+                SelectToggle toggle = instance.GetComponent<SelectToggle>();
+                toggle.Construct(_toggleGroup, data.Name, data.Description, data.Icon);
                 _selectToggles.Add(toggle);
             }
         }
@@ -57,13 +57,13 @@ namespace Assets._Project.Character_Selection
         {
             gameObject.SetActive(true);
             _playButton.onClick.AddListener(OnPlayClicked);
-            _selectButton.onClick.AddListener(OnNextPlayerClicked);
+            _selectButton.onClick.AddListener(OnSelectClicked);
             _selectToggles.ForEach(toggle => toggle.OnClick += Select);
             _selectToggles[0].Select();
             callback?.Invoke();
         }
 
-        private void OnNextPlayerClicked()
+        private void OnSelectClicked()
         {
             OnSelect?.Invoke(_selectedCharacter, _nameField.text);
             _nameField.text = string.Empty;
@@ -79,7 +79,7 @@ namespace Assets._Project.Character_Selection
         public void Hide(Action callback = null)
         {
             _playButton.onClick.RemoveListener(OnPlayClicked);
-            _selectButton.onClick.RemoveListener(OnNextPlayerClicked);
+            _selectButton.onClick.RemoveListener(OnSelectClicked);
             _selectToggles.ForEach(toggle => toggle.OnClick -= Select);
             gameObject.SetActive(false);
             callback?.Invoke();

@@ -1,7 +1,7 @@
 ﻿using Assets._Project.Actors_Base;
 using UnityEngine;
 
-namespace Assets._Project.Characters
+namespace Assets._Project.Game.Characters
 {
     [CreateAssetMenu]
     public class CharacterData : ScriptableObject, IActorData

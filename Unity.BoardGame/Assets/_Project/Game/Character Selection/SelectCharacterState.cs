@@ -1,7 +1,7 @@
-﻿using Assets._Project.Turn_Sequencing;
+﻿using Assets._Project.Game.Turn_Sequencing;
 using Finite_State_Machine;
 
-namespace Assets._Project.Character_Selection
+namespace Assets._Project.Game.Character_Selection
 {
     public class SelectCharacterState : State
     {

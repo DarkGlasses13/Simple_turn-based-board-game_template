@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine.AddressableAssets;
 
-namespace Assets._Project.Characters
+namespace Assets._Project.Game.Characters
 {
     public class CharactersBase : ActorsBase<Character>
     {

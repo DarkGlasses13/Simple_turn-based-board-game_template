@@ -48,7 +48,7 @@ namespace Assets._Project
 
         protected override void OnControllersEnabled()
         {
-            _sceneSwitcher.ChangeAsync("map_Demo");
+            _sceneSwitcher.ChangeAsync("Main Menu");
         }
     }
 }

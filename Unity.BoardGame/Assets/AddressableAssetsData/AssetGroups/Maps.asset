@@ -10,31 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Scenes
+  m_Name: Maps
   m_EditorClassIdentifier: 
-  m_GroupName: Scenes
+  m_GroupName: Maps
   m_Data:
     m_SerializedData: []
-  m_GUID: 11e42d618f37ec14ba71017bda4bedf2
+  m_GUID: ee445aaa49416444cb7ee9628792724c
   m_SerializeEntries:
-  - m_GUID: 91cee6e67c7eaa545801333bfb216a55
-    m_Address: Empty
+  - m_GUID: e74b69d37e19c3646a823077af00d7b7
+    m_Address: map_Demo
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: a0eb738dbbf27c344ba553a279dd7098
-    m_Address: Boot
+  - m_GUID: 0e379e4418c3c1c4a84ea90b0e9537dd
+    m_Address: Datas
     m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: fa11a329478d6564ab730586de23724f
-    m_Address: Main Menu
-    m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - Map Data
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 374777c5805191c47868dbe6f6769cc9, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 825264f0f1d116040800b09dbc0d5bb1, type: 2}
-    - {fileID: 11400000, guid: d8bd09423d1570e42bbb3bab67960a52, type: 2}
+    - {fileID: 11400000, guid: 4d3c2a8bfe777f745893928a819905c5, type: 2}
+    - {fileID: 11400000, guid: 886b04d0a4794fa439e1fa513b6c47d3, type: 2}

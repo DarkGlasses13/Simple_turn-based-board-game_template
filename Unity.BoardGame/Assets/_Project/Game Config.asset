@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Game Config
   m_EditorClassIdentifier: 
   <PlayersLimit>k__BackingField: 4
+  <DiceMaxValue>k__BackingField: 6

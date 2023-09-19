@@ -1,11 +1,32 @@
 {
   "dependencies": {
+    "com.darkglasses.fsm": {
+      "version": "https://github.com/DarkGlasses13/FSM.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "078d5aa829a062fe94d1bb1207bb953ad15cef4a"
+    },
     "com.darkglasses.tickable-controllers_based_architecture": {
       "version": "https://github.com/DarkGlasses13/Tickable-controllers_architecture.git",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "8331ce7570f882a11c3770f821f061c957a9f062"
+      "hash": "39d846a262caae4e0b9975558fc6dff6f8141e3c"
+    },
+    "com.unity.addressables": {
+      "version": "1.21.17",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.scriptablebuildpipeline": "1.21.9",
+        "com.unity.modules.assetbundle": "1.0.0",
+        "com.unity.modules.imageconversion": "1.0.0",
+        "com.unity.modules.jsonserialize": "1.0.0",
+        "com.unity.modules.unitywebrequest": "1.0.0",
+        "com.unity.modules.unitywebrequestassetbundle": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
     },
     "com.unity.burst": {
       "version": "1.8.8",
@@ -123,6 +144,13 @@
         "com.unity.shadergraph": "14.0.8"
       }
     },
+    "com.unity.scriptablebuildpipeline": {
+      "version": "1.21.9",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
     "com.unity.searcher": {
       "version": "4.9.2",
       "depth": 2,
@@ -184,6 +212,13 @@
         "com.unity.modules.ui": "1.0.0",
         "com.unity.modules.imgui": "1.0.0"
       }
+    },
+    "fastrandom": {
+      "version": "https://github.com/vangogih/Dont-Use-UnityEngine.Random.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "c578f467eadfbb18538963d75d8f29e9f621d707"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",

@@ -5,14 +5,14 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "7c9f6f5c1aa2f14275ef92dcff0ad4ad944fd6be"
+      "hash": "078d5aa829a062fe94d1bb1207bb953ad15cef4a"
     },
     "com.darkglasses.tickable-controllers_based_architecture": {
       "version": "https://github.com/DarkGlasses13/Tickable-controllers_architecture.git",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "27de46087ae8e73939bfb30399d2da7ab0562e30"
+      "hash": "39d846a262caae4e0b9975558fc6dff6f8141e3c"
     },
     "com.unity.addressables": {
       "version": "1.21.17",

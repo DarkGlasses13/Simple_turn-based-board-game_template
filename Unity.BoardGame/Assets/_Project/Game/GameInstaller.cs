@@ -1,38 +1,29 @@
-﻿using Assets._Project.Character_Selection;
-using Assets._Project.Characters;
-using Assets._Project.Dice_Rolling;
-using Assets._Project.Turn_Sequencing;
+﻿using Assets._Project.Game.Character_Selection;
+using Assets._Project.Game.Characters;
+using Assets._Project.Game.Dice_Rolling;
+using Assets._Project.Game.Turn_Sequencing;
 using Finite_State_Machine;
 using UnityEngine;
 using Zenject;
 
-namespace Assets._Project
+namespace Assets._Project.Game
 {
-    public class GameInstaller : MonoInstaller 
+    public class GameInstaller : MonoInstaller
     {
-        [SerializeField] private Transform
+        [SerializeField]
+        private Transform
             _hudContainer,
             _popupsContainer;
 
         public override void InstallBindings()
         {
-            BindConfig();
             BindContainers();
             BindCharactersBase();
-            BindStateMachine();
             BindStates();
             BindUIElements();
             BindTurn();
             BindControllers();
             BindRunner();
-        }
-
-        private void BindConfig()
-        {
-            Container
-                .Bind<GameConfigLoader>()
-                .FromNew()
-                .AsSingle();
         }
 
         private void BindTurn()
@@ -53,10 +44,6 @@ namespace Assets._Project
 
         private void BindControllers()
         {
-            Container
-                .Bind<StateUpdateController>()
-                .AsSingle();
-
             Container
                 .Bind<CharacterSelectionController>()
                 .AsSingle();
@@ -85,15 +72,6 @@ namespace Assets._Project
             Container
                 .Bind<IState>()
                 .To<TurnState>()
-                .FromNew()
-                .AsSingle();
-        }
-
-        private void BindStateMachine()
-        {
-            Container
-                .Bind(typeof(IStateSwitcher), typeof(FiniteStateMachine))
-                .To<FiniteStateMachine>()
                 .FromNew()
                 .AsSingle();
         }

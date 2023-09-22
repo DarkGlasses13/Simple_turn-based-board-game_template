@@ -1,4 +1,4 @@
-﻿using Assets._Project.Actors_Base;
+﻿using Assets.Package.Tokens.Actors;
 
 namespace Assets._Project.Game.Characters
 {

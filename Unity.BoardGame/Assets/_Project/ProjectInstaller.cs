@@ -1,4 +1,5 @@
 using Architecture_Base.Scene_Switching;
+using Assets._Project.Helpers;
 using Assets._Project.Scene_Swith;
 using Finite_State_Machine;
 using UnityEngine;
@@ -12,11 +13,20 @@ namespace Assets._Project
         public override void InstallBindings()
         {
             BindFastRandom();
+            BindHelpers();
             BindStateMachine();
             BindSceneSwitcher();
             BindConfig();
             BindControllers();
             BindRunner();
+        }
+
+        private void BindHelpers()
+        {
+            Container
+                .Bind<Coroutiner>()
+                .FromComponentInHierarchy()
+                .AsSingle();
         }
 
         private void BindFastRandom()

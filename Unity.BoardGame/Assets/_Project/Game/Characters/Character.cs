@@ -1,11 +1,12 @@
-﻿using Assets._Project.Actors_Base;
+﻿using Architecture_Base.Asset_Loading;
+using Assets.Package.Tokens.Actors;
 using UnityEngine;
 
 namespace Assets._Project.Game.Characters
 {
     public class Character : Actor
     {
-        public Character(CharacterData data) : base(data)
+        public Character(CharacterData data, IInstanceLoader instanceLoader) : base(data, instanceLoader)
         {
         }
 

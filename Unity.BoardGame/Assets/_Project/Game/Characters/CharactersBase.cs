@@ -1,25 +1,23 @@
-﻿using Assets._Project.Actors_Base;
+﻿using Assets._Project.Asset_Loading;
+using Assets.Package.Tokens;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine.AddressableAssets;
 
 namespace Assets._Project.Game.Characters
 {
-    public class CharactersBase : ActorsBase<Character>
+    public class CharactersBase : TokensBase<CharacterData, Character>
     {
-        private IEnumerable<CharacterData> _datas;
+        public IReadOnlyCollection<CharacterData> Datas => _datas.AsReadOnly();
 
-        public IReadOnlyCollection<CharacterData> Datas => (IReadOnlyCollection<CharacterData>)_datas;
-
-        public async Task InitAsync()
+        public override async Task LoadDataAsync()
         {
-            _datas = await Addressables.LoadAssetsAsync<CharacterData>("Character Data", null).Task;
+            _datas = new(await Addressables.LoadAssetsAsync<CharacterData>("Character Data", null).Task);
         }
 
         protected override Character CreateByID(string id)
         {
-            return new Character(_datas.Single(data => data.ID == id));
+            return new Character(GetDataByID(id), new LocalInstanceLoader());
         }
     }
 }

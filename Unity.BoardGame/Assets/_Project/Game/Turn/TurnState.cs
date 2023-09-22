@@ -40,7 +40,7 @@ namespace Assets._Project.Game.Turn
             _way.Enter(_turn.CurrentPlayer, lastWaypoint.Index, out bool isFinished);
             _characters
                 .GetByID(_turn.CurrentPlayer.CharacterID, isUsed: true)
-                .Move(lastWaypoint.CharactersContainer);
+                .Move(way);
 
             if (isFinished)
             {

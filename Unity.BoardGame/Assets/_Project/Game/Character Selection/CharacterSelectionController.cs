@@ -39,11 +39,11 @@ namespace Assets._Project.Game.Character_Selection
         {
             UpdateButtonsStates();
             _popup.Show();
-            _popup.OnSelect += OnNextPlayer;
+            _popup.OnSelect += OnSelect;
             _popup.OnPlay += OnPlay;
         }
 
-        private void OnNextPlayer(int index, string name) => RegistNewPlayer(index, name);
+        private void OnSelect(int index, string name) => RegistNewPlayer(index, name);
 
         private void OnPlay(int index, string name)
         {
@@ -66,7 +66,7 @@ namespace Assets._Project.Game.Character_Selection
 
         protected override void OnDisable()
         {
-            _popup.OnSelect -= OnNextPlayer;
+            _popup.OnSelect -= OnSelect;
             _popup.OnPlay -= OnPlay;
             _popup.Hide();
         }

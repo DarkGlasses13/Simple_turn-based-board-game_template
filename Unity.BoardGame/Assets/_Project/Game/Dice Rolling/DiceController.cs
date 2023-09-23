@@ -14,7 +14,7 @@ namespace Assets._Project.Game.Dice_Rolling
         private readonly GameConfigLoader _configLoader;
         private readonly DicePopupLoader _dicePopupLoader;
         private readonly Transform _popupContainer;
-        private Config _config;
+        private GameConfig _config;
         private DicePopup _popup;
 
         public int Result { get; private set; }

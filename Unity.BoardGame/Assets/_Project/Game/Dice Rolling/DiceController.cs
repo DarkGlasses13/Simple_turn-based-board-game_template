@@ -1,8 +1,8 @@
 ﻿using Architecture_Base.Core;
+using Architecture_Base.Hierarchy_Building;
 using System;
 using System.Threading.Tasks;
 using UnityEngine;
-using Zenject;
 
 namespace Assets._Project.Game.Dice_Rolling
 {
@@ -20,12 +20,12 @@ namespace Assets._Project.Game.Dice_Rolling
         public int Result { get; private set; }
 
         public DiceController(FastRandom random, GameConfigLoader configLoader,
-            DicePopupLoader dicePopupLoader, [Inject(Id = "Popup")]Transform popupContainer)
+            DicePopupLoader dicePopupLoader, HierarchyBuilder hierarchyBuilder)
         {
             _random = random;
             _configLoader = configLoader;
             _dicePopupLoader = dicePopupLoader;
-            _popupContainer = popupContainer;
+            _popupContainer = hierarchyBuilder.GetParent("Popups");
         }
 
         public override async Task InitializeAsync()

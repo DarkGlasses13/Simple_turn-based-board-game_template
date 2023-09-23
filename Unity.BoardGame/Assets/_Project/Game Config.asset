@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f89a4cb478cc1044b6d2b662aeaff76, type: 3}
   m_Name: Game Config
   m_EditorClassIdentifier: 
-  <PlayersLimit>k__BackingField: 4
+  <PlayersLimit>k__BackingField: 5
   <DiceMaxValue>k__BackingField: 6
   <TurnStepMotionDuration>k__BackingField: 0.5
   <TurnRotationDuration>k__BackingField: 0.3

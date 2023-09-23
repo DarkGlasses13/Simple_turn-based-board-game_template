@@ -21,7 +21,7 @@ namespace Assets._Project.Game.Turn
 
         public bool TryRegistNewPlayer(string name, string characterID)
         {
-            if (string.IsNullOrEmpty(name))
+            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(characterID))
                 return false;
 
             if (_currentPlayerIndex >= _config.PlayersLimit)

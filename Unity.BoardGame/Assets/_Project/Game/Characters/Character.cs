@@ -10,8 +10,11 @@ namespace Assets._Project.Game.Characters
 {
     public class Character : Actor
     {
-        public Character(CharacterData data, IInstanceLoader instanceLoader) : base(data, instanceLoader)
+        private readonly GameConfig _config;
+
+        public Character(CharacterData data, IInstanceLoader instanceLoader, GameConfig config) : base(data, instanceLoader)
         {
+            _config = config;
         }
 
         protected override void OnInstanceLoaded(GameObject instance)
@@ -38,11 +41,22 @@ namespace Assets._Project.Game.Characters
                     way.ElementAt(i).CharactersContainer.transform.position.z
                 );
 
-                //Vector3 rotation = Vector3.up * Quaternion.LookRotation(direction).eulerAngles.y;
+                Vector3 rotation;
+
+                if (i == 0)
+                {
+                    rotation = Vector3.up * Quaternion
+                        .LookRotation(waypointPosition - GetInstance().transform.position).eulerAngles.y;
+                }
+                else
+                {
+                    rotation = Vector3.up * Quaternion
+                        .LookRotation(waypointPosition - way.ElementAt(i - 1).CharactersContainer.position).eulerAngles.y;
+                }
 
                 motion.Append(GetInstance().transform
-                    //.DORotate(rotation, 0.5f)).Append(GetInstance().transform
-                    .DOMove(waypointPosition, 0.5f));
+                    .DORotate(rotation, _config.TurnRotationDuration)).Append(GetInstance().transform
+                    .DOMove(waypointPosition, _config.TurnStepMotionDuration));
             }
 
             motion

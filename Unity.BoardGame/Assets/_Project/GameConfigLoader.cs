@@ -2,7 +2,7 @@
 
 namespace Assets._Project
 {
-    public class GameConfigLoader : LocalAssetLoader<Config>
+    public class GameConfigLoader : LocalAssetLoader<GameConfig>
     {
         public override object Key => "Game Config";
     }

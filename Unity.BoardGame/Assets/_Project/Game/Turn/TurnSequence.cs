@@ -4,7 +4,7 @@ namespace Assets._Project.Game.Turn
 {
     public class TurnSequence
     {
-        private readonly Config _config;
+        private readonly GameConfig _config;
 
         private readonly List<Player> _players = new();
         private int _currentPlayerIndex;

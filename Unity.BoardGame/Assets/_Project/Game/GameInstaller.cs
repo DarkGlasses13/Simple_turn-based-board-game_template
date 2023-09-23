@@ -13,15 +13,8 @@ namespace Assets._Project.Game
 {
     public class GameInstaller : MonoInstaller
     {
-        [SerializeField]
-        private Transform
-            _hudContainer,
-            _popupsContainer,
-            _way;
-
         public override void InstallBindings()
         {
-            BindContainers();
             BindCharactersBase();
             BindStates();
             BindUIElements();
@@ -33,9 +26,11 @@ namespace Assets._Project.Game
 
         private void BindWay()
         {
+            Transform wayParent = FindObjectOfType<Waypoint>().transform.parent;
+
             Container
                 .Bind<List<Waypoint>>()
-                .FromInstance(_way.GetComponentsInChildren<Waypoint>().ToList());
+                .FromInstance(wayParent.GetComponentsInChildren<Waypoint>().ToList());
 
             Container
                 .Bind<Way>()
@@ -119,19 +114,6 @@ namespace Assets._Project.Game
                 .Bind<CharactersBase>()
                 .FromNew()
                 .AsSingle();
-        }
-
-        private void BindContainers()
-        {
-            Container
-                .Bind<Transform>()
-                .WithId("HUD")
-                .FromInstance(_hudContainer);
-
-            Container
-                .Bind<Transform>()
-                .WithId("Popup")
-                .FromInstance(_popupsContainer);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Architecture_Base.Core;
+using Architecture_Base.Hierarchy_Building;
 using Architecture_Base.Scene_Switching;
 using Assets._Project.Game.Character_Selection;
 using Assets._Project.Main_Menu.Maps;
@@ -7,7 +8,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
-using Zenject;
 
 namespace Assets._Project.Main_Menu.Map_Selection
 {
@@ -20,11 +20,11 @@ namespace Assets._Project.Main_Menu.Map_Selection
         private List<MapData> _datas;
         private MapSelectionPopup _popup;
 
-        public MapSelectionController([Inject(Id = "Popup")] Transform popupContainer,
+        public MapSelectionController(HierarchyBuilder hierarchyBuilder,
             MapSelectionPopupLoader mapSelectionPopupLoader, IStateSwitcher stateSwitcher,
             ISceneSwitcher sceneSwitcher)
         {
-            _popupContainer = popupContainer;
+            _popupContainer = hierarchyBuilder.GetParent("Popups");
             _mapSelectionPopupLoader = mapSelectionPopupLoader;
             _stateSwitcher = stateSwitcher;
             _sceneSwitcher = sceneSwitcher;

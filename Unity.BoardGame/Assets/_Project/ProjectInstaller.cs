@@ -1,5 +1,6 @@
 using Architecture_Base.Scene_Switching;
 using Assets._Project.Helpers;
+using Architecture_Base.Hierarchy_Building;
 using Assets._Project.Scene_Swith;
 using Finite_State_Machine;
 using UnityEngine;
@@ -25,7 +26,12 @@ namespace Assets._Project
         {
             Container
                 .Bind<Coroutiner>()
-                .FromComponentInHierarchy()
+            .FromComponentInHierarchy()
+            .AsSingle();
+
+            Container
+                .Bind<HierarchyBuilder>()
+                .FromNew()
                 .AsSingle();
         }
 

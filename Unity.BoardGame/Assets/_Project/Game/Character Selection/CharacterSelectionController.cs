@@ -1,28 +1,28 @@
 ﻿using Architecture_Base.Core;
+using Architecture_Base.Hierarchy_Building;
 using Assets._Project.Game.Characters;
 using Assets._Project.Game.Turn;
 using Finite_State_Machine;
 using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
-using Zenject;
 
 namespace Assets._Project.Game.Character_Selection
 {
     public class CharacterSelectionController : Controller
     {
-        private readonly Transform _hudContainer;
+        private readonly Transform _popupContainer;
         private readonly CharacterSelectionPopupLoader _popupLoader;
         private readonly CharactersBase _charactersBase;
         private readonly TurnSequence _turn;
         private readonly IStateSwitcher _stateSwitcher;
         private CharacterSelectionPopup _popup;
 
-        public CharacterSelectionController([Inject(Id = "Popup")] Transform hudContainer,
+        public CharacterSelectionController(HierarchyBuilder hierarchyBuilder,
             CharacterSelectionPopupLoader popupLoader, CharactersBase charactersBase,
             TurnSequence turn, IStateSwitcher stateSwitcher)
         {
-            _hudContainer = hudContainer;
+            _popupContainer = hierarchyBuilder.GetParent("Popups");
             _popupLoader = popupLoader;
             _charactersBase = charactersBase;
             _turn = turn;
@@ -31,7 +31,7 @@ namespace Assets._Project.Game.Character_Selection
 
         public override async Task InitializeAsync()
         {
-            _popup = await _popupLoader.LoadAndInstantiateAsync(_hudContainer, false);
+            _popup = await _popupLoader.LoadAndInstantiateAsync(_popupContainer, false);
             await _popup.ConstructAsync(_charactersBase.Datas);
         }
 

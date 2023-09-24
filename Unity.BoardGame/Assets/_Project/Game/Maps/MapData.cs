@@ -1,7 +1,7 @@
 ﻿using Assets.Package.Tokens;
 using UnityEngine;
 
-namespace Assets._Project.Main_Menu.Maps
+namespace Assets._Project.Game.Maps
 {
     [CreateAssetMenu]
     public class MapData : TokenData, IDescriptable

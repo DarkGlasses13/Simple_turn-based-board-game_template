@@ -1,4 +1,5 @@
 ﻿using Assets._Project.Game.Board;
+using Assets._Project.Game.Board.Waypoint_Action_Strategies;
 using Assets._Project.Game.Character_Selection;
 using Assets._Project.Game.Characters;
 using Assets._Project.Game.Dice_Rolling;
@@ -26,16 +27,21 @@ namespace Assets._Project.Game
 
         private void BindWay()
         {
-            Transform wayParent = FindObjectOfType<Waypoint>().transform.parent;
-
-            Container
-                .Bind<List<Waypoint>>()
-                .FromInstance(wayParent.GetComponentsInChildren<Waypoint>().ToList());
-
             Container
                 .Bind<Way>()
                 .FromNew()
                 .AsSingle();
+
+            Container
+                .Bind<SimpleWaypointAction>()
+                .FromNew()
+                .AsSingle();
+
+            Transform wayParent = GameObject.Find("[ WAY ]").transform;
+
+            Container
+                .Bind<List<IWaypoint>>()
+                .FromInstance(wayParent.GetComponentsInChildren<IWaypoint>().ToList());
         }
 
         private void BindTurnSequence()
@@ -83,6 +89,12 @@ namespace Assets._Project.Game
             Container
                 .Bind<IState>()
                 .To<StartGameState>()
+                .FromNew()
+                .AsSingle();
+
+            Container
+                .Bind<IState>()
+                .To<RollTheDiceState>()
                 .FromNew()
                 .AsSingle();
 

@@ -27,13 +27,7 @@ namespace Assets._Project.Game.Characters
 
             for (int i = 0; i < way.Count(); i++)
             {
-                Vector3 waypointPosition = new
-                (
-                    way.ElementAt(i).CharactersContainer.transform.position.x,
-                    Instance.transform.position.y,
-                    way.ElementAt(i).CharactersContainer.transform.position.z
-                );
-
+                Vector3 waypointPosition = way.ElementAt(i).CharactersContainer.transform.position + Vector3.up;
                 Vector3 rotation;
 
                 if (i == 0)
@@ -66,13 +60,7 @@ namespace Assets._Project.Game.Characters
             Sequence motion = DOTween.Sequence();
             motion.SetAutoKill(true);
             Instance.transform.SetParent(null);
-            Vector3 waypointPosition = new
-            (
-                destination.CharactersContainer.transform.position.x,
-                Instance.transform.position.y,
-                destination.CharactersContainer.transform.position.z
-            );
-
+            Vector3 waypointPosition = destination.CharactersContainer.transform.position + Vector3.up;
             Vector3 rotation = Vector3.up * Quaternion
                         .LookRotation(waypointPosition - Instance.transform.position).eulerAngles.y;
 

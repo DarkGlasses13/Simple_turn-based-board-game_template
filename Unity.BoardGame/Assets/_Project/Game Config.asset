@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <PlayersLimit>k__BackingField: 5
   <DiceMaxValue>k__BackingField: 6
-  <TurnStepMotionDuration>k__BackingField: 0.5
-  <TurnRotationDuration>k__BackingField: 0.3
+  <TurnStepMotionDuration>k__BackingField: 0.3
+  <TurnRotationDuration>k__BackingField: 0.1

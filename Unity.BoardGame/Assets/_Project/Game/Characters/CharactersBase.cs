@@ -1,8 +1,9 @@
-﻿using Assets._Project.Asset_Loading;
-using Assets.Package.Tokens;
+﻿using Assets.Package.Tokens;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace Assets._Project.Game.Characters
 {
@@ -18,7 +19,7 @@ namespace Assets._Project.Game.Characters
 
         public IReadOnlyCollection<CharacterData> Datas => _datas.AsReadOnly();
 
-        public override async Task LoadDataAsync()
+        public override async Task InitializeAsync()
         {
             _datas = new(await Addressables.LoadAssetsAsync<CharacterData>("Character Data", null).Task);
             _config = await _configLoader.LoadAsync();
@@ -26,7 +27,11 @@ namespace Assets._Project.Game.Characters
 
         protected override Character CreateByID(string id)
         {
-            return new Character(GetDataByID(id), new LocalInstanceLoader(), _config);
+            AsyncOperationHandle<GameObject> instantiate = Addressables.InstantiateAsync(id);
+            instantiate.WaitForCompletion();
+            CharacterInstance instance = instantiate.Result.AddComponent<CharacterInstance>();
+            instance.Construct(id);
+            return new Character(GetDataByID(id), instance, _config);
         }
     }
 }

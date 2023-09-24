@@ -29,7 +29,7 @@ namespace Assets._Project.Game
                 _way.Enter(player, _way.Start.Index, out bool isFinished);
                 _characters
                     .GetByID(player.CharacterID, isUsed: false, willWse: true)
-                    .GetInstance().transform.SetParent(_way.Start.CharactersContainer);
+                    .Instance.transform.SetParent(_way.Start.CharactersContainer);
             }
 
             _switcher.Switch<RollTheDiceState>();

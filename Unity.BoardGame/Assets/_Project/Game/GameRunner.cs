@@ -33,7 +33,7 @@ namespace Assets._Project.Game
 
         protected override async Task CreateControllers()
         {
-            await _charactersBase.LoadDataAsync();
+            await _charactersBase.InitializeAsync();
 
             _controllers = new IController[]
             {

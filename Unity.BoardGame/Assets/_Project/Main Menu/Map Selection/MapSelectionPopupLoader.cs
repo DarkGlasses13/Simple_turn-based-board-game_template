@@ -2,7 +2,7 @@
 
 namespace Assets._Project.Main_Menu.Map_Selection
 {
-    public class MapSelectionPopupLoader : LocalAssetLoader<MapSelectionPopup>
+    public class MapSelectionPopupLoader : LocalSingleAssetLoader<MapSelectionPopup>
     {
         public override object Key => "Map Selection Popup";
     }

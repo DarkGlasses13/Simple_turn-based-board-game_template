@@ -1,4 +1,4 @@
-﻿using Assets._Project.Main_Menu.Maps;
+﻿using Assets._Project.Game.Maps;
 using Assets._Project.UI_Base;
 using System;
 using System.Collections.Generic;

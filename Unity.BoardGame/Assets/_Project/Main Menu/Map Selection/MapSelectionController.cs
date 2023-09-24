@@ -2,7 +2,7 @@
 using Architecture_Base.Hierarchy_Building;
 using Architecture_Base.Scene_Switching;
 using Assets._Project.Game.Character_Selection;
-using Assets._Project.Main_Menu.Maps;
+using Assets._Project.Game.Maps;
 using Finite_State_Machine;
 using System.Collections.Generic;
 using System.Threading.Tasks;

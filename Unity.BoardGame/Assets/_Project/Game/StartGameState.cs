@@ -1,5 +1,6 @@
 ﻿using Assets._Project.Game.Board;
 using Assets._Project.Game.Characters;
+using Assets._Project.Game.Dice_Rolling;
 using Assets._Project.Game.Turn;
 using Finite_State_Machine;
 using UnityEngine;
@@ -31,7 +32,7 @@ namespace Assets._Project.Game
                     .GetInstance().transform.SetParent(_way.Start.CharactersContainer);
             }
 
-            _switcher.Switch<TurnState>();
+            _switcher.Switch<RollTheDiceState>();
         }
 
         public override void Exit()

@@ -2,6 +2,7 @@
 using Assets._Project.Game.Board;
 using Assets.Package.Tokens.Actors;
 using DG.Tweening;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -24,7 +25,7 @@ namespace Assets._Project.Game.Characters
                 .Construct(Data.ID);
         }
 
-        public void Move(IEnumerable<IWaypoint> way)
+        public void Move(IEnumerable<IWaypoint> way, Action onMotionended = null)
         {
             // TODO: remove sequence kill
 
@@ -59,9 +60,11 @@ namespace Assets._Project.Game.Characters
                     .DOMove(waypointPosition, _config.TurnStepMotionDuration));
             }
 
-            motion
-                .Play().OnComplete(() => GetInstance().transform
-                .SetParent(way.ElementAt(way.Count() - 1).CharactersContainer));
+            motion.Play().OnComplete(() =>
+            {
+                GetInstance().transform.SetParent(way.ElementAt(way.Count() - 1).CharactersContainer);
+                onMotionended?.Invoke();
+            });
         }
     }
 }

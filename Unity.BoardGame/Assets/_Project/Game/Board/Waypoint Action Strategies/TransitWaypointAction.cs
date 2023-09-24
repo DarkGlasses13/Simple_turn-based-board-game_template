@@ -19,7 +19,7 @@ namespace Assets._Project.Game.Board.Waypoint_Action_Strategies
 
         public void Performe(Player player, Action callback = null)
         {
-            IWaypoint destination = _way.GetWaypointByIndex(13);
+            Waypoint destination = _way.GetWaypointByIndex(13);
             _way.Enter(player, 13, out bool isFinished);
             _characters.GetByID(player.CharacterID, isUsed: true).Move(destination, callback);
         }

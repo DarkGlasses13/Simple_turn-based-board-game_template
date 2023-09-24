@@ -6,24 +6,24 @@ namespace Assets._Project.Game.Board
 {
     public class Way
     {
-        private readonly List<IWaypoint> _waypoints;
+        private readonly List<Waypoint> _waypoints;
 
-        public IWaypoint Start => _waypoints[0];
-        public IWaypoint End => _waypoints[^1];
+        public Waypoint Start => _waypoints[0];
+        public Waypoint End => _waypoints[^1];
 
-        public Way(List<IWaypoint> waypoints)
+        public Way(List<Waypoint> waypoints)
         {
             _waypoints = waypoints;
         }
 
-        public IEnumerable<IWaypoint> Get(Player player, int steps)
+        public IEnumerable<Waypoint> Get(Player player, int steps)
         {
             int direction = steps > 0 ? 1 : -1;
-            IWaypoint start = GetPlayersPoint(player);
+            Waypoint start = GetPlayersPoint(player);
 
             if (start != null)
             {
-                List<IWaypoint> way = new();
+                List<Waypoint> way = new();
                 int iStart = start.Index;
 
                 for (int i = iStart; Mathf.Abs(i) < Mathf.Abs(iStart + steps); i += direction)
@@ -40,20 +40,23 @@ namespace Assets._Project.Game.Board
             return null;
         }
 
-        private IWaypoint GetPlayersPoint(Player player)
+        private Waypoint GetPlayersPoint(Player player)
         {
             return _waypoints.SingleOrDefault(waypoint => waypoint.Contains(player));
         }
 
         public void Enter(Player player, int to, out bool isFinished)
         {
-            IWaypoint from = GetPlayersPoint(player);
-            from?.Exit(player);
+            Waypoint from = GetPlayersPoint(player);
+
+            if (from != null)
+                from.Exit(player);
+
             _waypoints[to].Enter(player);
             isFinished = to == End.Index;
         }
 
-        public IWaypoint GetWaypointByIndex(int index)
+        public Waypoint GetWaypointByIndex(int index)
         {
             index = Mathf.Clamp(index, 0, _waypoints.Count - 1);
             return _waypoints[index];

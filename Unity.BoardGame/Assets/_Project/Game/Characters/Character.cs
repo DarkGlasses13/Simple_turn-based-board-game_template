@@ -17,7 +17,7 @@ namespace Assets._Project.Game.Characters
             _config = config;
         }
 
-        public void Move(IEnumerable<IWaypoint> way, Action onMotionended = null)
+        public void Move(IEnumerable<Waypoint> way, Action onMotionended = null)
         {
             // TODO: remove sequence kill
 
@@ -59,7 +59,7 @@ namespace Assets._Project.Game.Characters
             });
         }
 
-        public void Move(IWaypoint destination, Action onMotionended = null)
+        public void Move(Waypoint destination, Action onMotionended = null)
         {
             // TODO: remove sequence kill
 

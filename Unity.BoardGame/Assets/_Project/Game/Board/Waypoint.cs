@@ -5,23 +5,20 @@ using Zenject;
 
 namespace Assets._Project.Game.Board
 {
-    public abstract class Waypoint<TActionStrategy> : MonoBehaviour, IWaypoint where TActionStrategy : IWaypointActionStrategy
+    public abstract class Waypoint : MonoBehaviour
     {
         protected Way _way;
-        private TActionStrategy _actionStrategy;
+        protected IWaypointActionStrategy _action;
         private readonly List<Player> _players = new();
 
         [field: SerializeField] public Transform CharactersContainer { get; private set; }
         public IReadOnlyCollection<Player> Characters => _players.AsReadOnly();
         public int Index => transform.GetSiblingIndex();
 
-        // TODO: Create a non monobehaviour layer and use this as view
-
         [Inject]
-        public void Construct(Way way, TActionStrategy actionStrategy)
+        public void Construct(Way way)
         {
             _way = way;
-            _actionStrategy = actionStrategy;
         }
 
         public bool Contains(Player player) => _players.Contains(player);
@@ -35,7 +32,7 @@ namespace Assets._Project.Game.Board
         {
             if (Contains(player))
             {
-                _actionStrategy?.Performe(player, onPerformed);
+                _action?.Performe(player, onPerformed);
             }
         }
 

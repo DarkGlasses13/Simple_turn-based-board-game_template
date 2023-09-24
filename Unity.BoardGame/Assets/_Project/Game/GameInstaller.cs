@@ -45,8 +45,8 @@ namespace Assets._Project.Game
             Transform wayParent = GameObject.Find("[ WAY ]").transform;
 
             Container
-                .Bind<List<IWaypoint>>()
-                .FromInstance(wayParent.GetComponentsInChildren<IWaypoint>().ToList());
+                .Bind<List<Waypoint>>()
+                .FromInstance(wayParent.GetComponentsInChildren<Waypoint>().ToList());
         }
 
         private void BindTurnSequence()

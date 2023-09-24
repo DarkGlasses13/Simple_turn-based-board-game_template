@@ -28,7 +28,7 @@ namespace Assets._Project.Game.Turn
         public override void Enter()
         {
             Debug.Log(_turn.CurrentPlayer.Name + "'s turn");
-            IEnumerable<IWaypoint> way = _way.Get(_turn.CurrentPlayer, _diceController.Result);
+            IEnumerable<Waypoint> way = _way.Get(_turn.CurrentPlayer, _diceController.Result);
             _characters
                 .GetByID(_turn.CurrentPlayer.CharacterID, isUsed: true)
                 .Move(way, OnMotionEnded);
@@ -36,8 +36,8 @@ namespace Assets._Project.Game.Turn
 
         private void OnMotionEnded()
         {
-            IEnumerable<IWaypoint> way = _way.Get(_turn.CurrentPlayer, _diceController.Result);
-            IWaypoint lastWaypoint = way.ElementAt(way.Count() - 1);
+            IEnumerable<Waypoint> way = _way.Get(_turn.CurrentPlayer, _diceController.Result);
+            Waypoint lastWaypoint = way.ElementAt(way.Count() - 1);
             _way.Enter(_turn.CurrentPlayer, lastWaypoint.Index, out _isFinished);
             lastWaypoint.DoAction(_turn.CurrentPlayer, OnWaypointActionPerformed);
         }

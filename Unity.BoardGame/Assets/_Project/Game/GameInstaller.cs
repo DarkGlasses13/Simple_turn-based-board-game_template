@@ -37,6 +37,11 @@ namespace Assets._Project.Game
                 .FromNew()
                 .AsSingle();
 
+            Container
+                .Bind<TransitWaypointAction>()
+                .FromNew()
+                .AsSingle();
+
             Transform wayParent = GameObject.Find("[ WAY ]").transform;
 
             Container

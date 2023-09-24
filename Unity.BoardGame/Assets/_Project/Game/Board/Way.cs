@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -7,12 +6,12 @@ namespace Assets._Project.Game.Board
 {
     public class Way
     {
-        private readonly List<Waypoint> _waypoints;
+        private readonly List<IWaypoint> _waypoints;
 
         public IWaypoint Start => _waypoints[0];
         public IWaypoint End => _waypoints[^1];
 
-        public Way(List<Waypoint> waypoints)
+        public Way(List<IWaypoint> waypoints)
         {
             _waypoints = waypoints;
         }
@@ -20,9 +19,9 @@ namespace Assets._Project.Game.Board
         public IEnumerable<IWaypoint> Get(Player player, int steps)
         {
             int direction = steps > 0 ? 1 : -1;
-            Waypoint start = GetPlayersPoint(player);
+            IWaypoint start = GetPlayersPoint(player);
 
-            if (start)
+            if (start != null)
             {
                 List<IWaypoint> way = new();
                 int iStart = start.Index;
@@ -41,20 +40,23 @@ namespace Assets._Project.Game.Board
             return null;
         }
 
-        private Waypoint GetPlayersPoint(Player player)
+        private IWaypoint GetPlayersPoint(Player player)
         {
             return _waypoints.SingleOrDefault(waypoint => waypoint.Contains(player));
         }
 
         public void Enter(Player player, int to, out bool isFinished)
         {
-            Waypoint from = GetPlayersPoint(player);
-
-            if (from != null)
-                from.Exit(player);
-
+            IWaypoint from = GetPlayersPoint(player);
+            from?.Exit(player);
             _waypoints[to].Enter(player);
             isFinished = to == End.Index;
+        }
+
+        public IWaypoint GetWaypointByIndex(int index)
+        {
+            index = Mathf.Clamp(index, 0, _waypoints.Count - 1);
+            return _waypoints[index];
         }
     }
 }

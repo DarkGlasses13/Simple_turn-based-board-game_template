@@ -66,5 +66,33 @@ namespace Assets._Project.Game.Characters
                 onMotionended?.Invoke();
             });
         }
+
+        public void Move(IWaypoint destination, Action onMotionended = null)
+        {
+            // TODO: remove sequence kill
+
+            Sequence motion = DOTween.Sequence();
+            motion.SetAutoKill(true);
+            GetInstance().transform.SetParent(null);
+            Vector3 waypointPosition = new
+            (
+                destination.CharactersContainer.transform.position.x,
+                GetInstance().transform.position.y,
+                destination.CharactersContainer.transform.position.z
+            );
+
+            Vector3 rotation = Vector3.up * Quaternion
+                        .LookRotation(waypointPosition - GetInstance().transform.position).eulerAngles.y;
+
+            motion.Append(GetInstance().transform
+                    .DORotate(rotation, _config.TurnRotationDuration)).Append(GetInstance().transform
+                    .DOMove(waypointPosition, _config.TurnStepMotionDuration));
+
+            motion.Play().OnComplete(() =>
+            {
+                GetInstance().transform.SetParent(destination.CharactersContainer);
+                onMotionended?.Invoke();
+            });
+        }
     }
 }

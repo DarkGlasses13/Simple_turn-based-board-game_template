@@ -14,6 +14,7 @@ namespace Assets._Project.Game.Turn
         private readonly Way _way;
         private readonly CharactersBase _characters;
         private readonly DiceController _diceController;
+        private bool _isFinished;
 
         public TurnState(IStateSwitcher switcher, TurnSequence turn, Way way,
             CharactersBase characters, DiceController diceController) : base(switcher)
@@ -37,9 +38,13 @@ namespace Assets._Project.Game.Turn
         {
             IEnumerable<IWaypoint> way = _way.Get(_turn.CurrentPlayer, _diceController.Result);
             IWaypoint lastWaypoint = way.ElementAt(way.Count() - 1);
-            _way.Enter(_turn.CurrentPlayer, lastWaypoint.Index, out bool isFinished);
+            _way.Enter(_turn.CurrentPlayer, lastWaypoint.Index, out _isFinished);
+            lastWaypoint.DoAction(_turn.CurrentPlayer, OnWaypointActionPerformed);
+        }
 
-            if (isFinished)
+        private void OnWaypointActionPerformed()
+        {
+            if (_isFinished)
             {
                 _switcher.Switch<FinishGameState>();
             }

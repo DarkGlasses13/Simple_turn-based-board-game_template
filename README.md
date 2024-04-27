@@ -1,1 +1,1 @@
-# Simple turn based burd game like template
+# Simple turn based board game like template
